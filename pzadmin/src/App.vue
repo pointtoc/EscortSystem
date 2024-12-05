@@ -1,6 +1,6 @@
 <script setup>
 import { RouterView } from 'vue-router';
-import HelloWorld from './components/HelloWorld.vue'
+import Aside from './components/aside.vue';
 </script>
 
 <template>
