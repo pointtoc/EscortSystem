@@ -10,12 +10,24 @@
         >
 
         <p class="logo-lg">DIDI 陪诊</p>
-        <TreeMenu/>
+        <TreeMenu :index="1" :menuData="menuData"/>
     </el-menu>
 </template>
 
-<script>
-import TreeMenu from "../components/treeMenu.vue"
+<script setup>
+/**
+ * 这里注意script后面添加了setup，没有添加就无法打印router，会导致undefined.
+ * <script setup> 是在单文件组件 (SFC) 中使用组合式 API 的编译时语法糖。当同时使用单文件组件与组合式 API 时该语法是默认推荐。
+ */
+import TreeMenu from "../components/treeMenu.vue";
+import { useRouter } from "vue-router";
+import { reactive } from "vue";
+
+const router = useRouter()
+// console.log(router, 'router')
+const menuData = reactive(router.options.routes[0].children)
+
+
 const handleOpen = () => {
 
 }
