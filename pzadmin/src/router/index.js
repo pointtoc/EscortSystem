@@ -9,60 +9,62 @@ import Order from '../views/vppz/order/index.vue'
 import Staff from '../views/vppz/staff/index.vue'
 
 const routes = [
-    {
+    { 
         path: '/',
-        component:Layout,
-        name:'主页',
-        children:[
+        component: Layout,
+        name: 'main',
+        children: [
             {
-                path:'dashboard',
-                meta:{ id:'1', name:'控制台', icon:'Platfrom', path:'/dashboard', describe:'控制台展示数据'},
-                component:Dashboard
+                path: 'dashboard',
+                meta: { id: '1', name: '控制台', icon: 'Platform', path: '/dashboard', describe: '用于展示当前系统中的统计数据、统计报表及重要实时数据' },
+                component: Dashboard
             },
             {
-                path:'auth',
-                meta:{ id:'2', name:'权限控制', icon:'Grid'},
-                children:[
+                path: 'auth',
+                meta: { id: '2' ,name: '权限管理', icon: 'Grid' },
+                children: [
                     {
-                        path:'',
-                        ailas:['admin'],
-                        meta:{ id:'1', name:'账号管理', icon:'Avatar', path:'/auth/admin', describe:'管理员更改数据'},
-                        component:Admin
+                    path: '',
+                    /**
+                     * 在这段前端路由代码中，alias 是一个用于定义路由别名的属性。
+                     * alias 属性允许你为某个路由（在这个例子中是/auth下的group路由）提供一个或多个别名，使得访问这些别名时会解析到该路由。
+                     * 让用户可以通过不同的 URL 来访问同一组件。
+                     * path: '' 表示 /auth 的根路径下（即 /auth/）会渲染 admin 组件。
+                     */
+                    alias: ['admin'],
+                    meta: { id: '1', name: '账号管理', icon: 'Avatar', path: '/auth/admin', describe: '管理员可以进行编辑，权限修改后需要登出才会生效' },
+                    component: Admin
                     },
                     {
-                        path:'',
-                        ailas:['group'],
-                        meta:{ id:'2', name:'菜单管理', icon:'Menu', path:'/auth/group', describe:'菜单规则'},
-                        component:Group
+                    path: 'group',
+                    meta: { id: '2', name: '菜单管理', icon: 'Menu', path: '/auth/group', describe: '菜单规则通常对应一个控制器的方法,同时菜单栏数据也从规则中获取' },
+                    component: Group
                     }
                 ]
             },
             {
-                path:'vppz',
-                meta:{ id:'3', name:'DIDI陪诊', icon:'Grid'},
-                children:[
+                path: 'vppz',
+                meta: { id: '3', name: 'DIDI陪诊', icon: 'BellFilled' },
+                children: [
                     {
-                        path:'',
-                        ailas:['staff'],
-                        meta:{ id:'1', name:'陪护管理', icon:'Checked', path:'/vppz/staff', describe:'培护士更改数据'},
-                        component:Staff
+                    path: '',
+                    alias: ['staff'],
+                    meta: { id: '1', name: '陪护管理', icon: 'Checked', path: '/vppz/staff', describe: '陪护师可以进行创建和修改，设置对应生效状态控制C端选择' },
+                    component: Staff
                     },
                     {
-                        path:'',
-                        ailas:['order'],
-                        meta:{ id:'2', name:'订单管理', icon:'List', path:'/vppz/order', describe:'订单详情与编辑'},
-                        component:Order
+                    path: 'order',
+                    meta: { id: '2', name: '订单管理', icon: 'List', path: '/vppz/order', describe: 'C端下单后可以查看所有订单状态，已支付的订单可以完成陪护状态修改' },
+                    component: Order
                     }
                 ]
-            },
+            }
         ]
-    },
-    {
-        path:'/login',
-        name:'登录',
-        component:Login,
-        descripe: '未登录跳转到登录页面'
-    },
+        },
+        {
+            path: '/login',
+            component: Login
+        },
 ]
 
 
